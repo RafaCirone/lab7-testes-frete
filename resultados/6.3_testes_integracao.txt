@@ -1,0 +1,18 @@
+$ pytest -v tests/integration
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+rootdir: /home/claude/lab6-testes-frete
+configfile: pytest.ini
+collecting ... collected 8 items
+
+tests/integration/test_frete_integracao.py::test_ct_i01_total_soma_taxa_padrao PASSED [ 12%]
+tests/integration/test_frete_integracao.py::test_ct_i02_total_sem_taxa_com_frete_gratis PASSED [ 25%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[0.0] PASSED [ 37%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[100.0] PASSED [ 50%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[249.99] PASSED [ 62%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[250.0] PASSED [ 75%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[1000.0] PASSED [ 87%]
+tests/integration/test_frete_integracao.py::test_ct_i04_total_consulta_calcular_frete PASSED [100%]
+
+============================== 8 passed in 0.01s ===============================
+[codigo de saida: 0]
