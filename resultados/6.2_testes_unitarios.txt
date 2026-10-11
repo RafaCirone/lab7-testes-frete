@@ -1,0 +1,15 @@
+$ pytest -v tests/unit
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+rootdir: /home/claude/lab6-testes-frete
+configfile: pytest.ini
+collecting ... collected 5 items
+
+tests/unit/test_frete_unit.py::test_ct_u01_taxa_padrao PASSED            [ 20%]
+tests/unit/test_frete_unit.py::test_ct_u02_um_centavo_abaixo_do_limite PASSED [ 40%]
+tests/unit/test_frete_unit.py::test_ct_u03_frete_gratis_no_limite PASSED [ 60%]
+tests/unit/test_frete_unit.py::test_ct_u04_frete_gratis_acima_do_limite PASSED [ 80%]
+tests/unit/test_frete_unit.py::test_ct_u05_limite_antigo_paga_frete PASSED [100%]
+
+============================== 5 passed in 0.01s ===============================
+[codigo de saida: 0]
