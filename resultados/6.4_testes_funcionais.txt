@@ -1,0 +1,14 @@
+$ pytest -v tests/functional
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+rootdir: /home/claude/lab6-testes-frete
+configfile: pytest.ini
+collecting ... collected 4 items
+
+tests/functional/test_frete_funcional.py::test_ct_f01_compra_pequena_paga_frete PASSED [ 25%]
+tests/functional/test_frete_funcional.py::test_ct_f02_compra_abaixo_do_limite_paga_frete PASSED [ 50%]
+tests/functional/test_frete_funcional.py::test_ct_f03_compra_no_limite_tem_frete_gratis PASSED [ 75%]
+tests/functional/test_frete_funcional.py::test_ct_f04_adicionar_item_libera_frete_gratis PASSED [100%]
+
+============================== 4 passed in 0.01s ===============================
+[codigo de saida: 0]
