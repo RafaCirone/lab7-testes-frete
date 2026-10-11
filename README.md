@@ -1,6 +1,5 @@
 # Lab 6 — Testes e Qualidade de Software (sistema de frete)
 
-Exercícios 6.1 a 6.5 aplicados ao sistema de cálculo de frete do checkout
 (código de origem: repositório `lab6-sdd-frete`).
 
 | Exercício | Entregável | Onde está |
