@@ -1,0 +1,187 @@
+TESTES DE REGRESSAO - nova funcionalidade: cupom DESCONTO10 (REQ-03, REQ-04)
+
+Suite de regressao: os 17 testes dos exercicios 6.2, 6.3 e 6.4, sem nenhuma alteracao
+(tests/unit/test_frete_unit.py, tests/integration/test_frete_integracao.py,
+ tests/functional/test_frete_funcional.py — identicos ao commit a206ae8).
+
+================================================================================
+EXECUCAO 1 - LINHA DE BASE (antes da mudanca, commit a206ae8)
+Esperado: 17 aprovados.
+================================================================================
+$ pytest -v 
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+rootdir: /home/claude/lab6-testes-frete
+configfile: pytest.ini
+testpaths: tests
+collecting ... collected 17 items
+
+tests/functional/test_frete_funcional.py::test_ct_f01_compra_pequena_paga_frete PASSED [  5%]
+tests/functional/test_frete_funcional.py::test_ct_f02_compra_abaixo_do_limite_paga_frete PASSED [ 11%]
+tests/functional/test_frete_funcional.py::test_ct_f03_compra_no_limite_tem_frete_gratis PASSED [ 17%]
+tests/functional/test_frete_funcional.py::test_ct_f04_adicionar_item_libera_frete_gratis PASSED [ 23%]
+tests/integration/test_frete_integracao.py::test_ct_i01_total_soma_taxa_padrao PASSED [ 29%]
+tests/integration/test_frete_integracao.py::test_ct_i02_total_sem_taxa_com_frete_gratis PASSED [ 35%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[0.0] PASSED [ 41%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[100.0] PASSED [ 47%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[249.99] PASSED [ 52%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[250.0] PASSED [ 58%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[1000.0] PASSED [ 64%]
+tests/integration/test_frete_integracao.py::test_ct_i04_total_consulta_calcular_frete PASSED [ 70%]
+tests/unit/test_frete_unit.py::test_ct_u01_taxa_padrao PASSED            [ 76%]
+tests/unit/test_frete_unit.py::test_ct_u02_um_centavo_abaixo_do_limite PASSED [ 82%]
+tests/unit/test_frete_unit.py::test_ct_u03_frete_gratis_no_limite PASSED [ 88%]
+tests/unit/test_frete_unit.py::test_ct_u04_frete_gratis_acima_do_limite PASSED [ 94%]
+tests/unit/test_frete_unit.py::test_ct_u05_limite_antigo_paga_frete PASSED [100%]
+
+============================== 17 passed in 0.02s ==============================
+[codigo de saida: 0]
+
+================================================================================
+EXECUCAO 2 - SPEC E TESTES NOVOS ESCRITOS, CODIGO AINDA NAO ALTERADO (Red)
+Esperado: os 17 de regressao aprovados; testes do cupom falhando.
+================================================================================
+$ pytest -v 
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+rootdir: /home/claude/lab6-testes-frete
+configfile: pytest.ini
+testpaths: tests
+collecting ... collected 25 items
+
+tests/functional/test_cupom_funcional.py::test_ct_f05_cliente_com_cupom_paga_frete_com_desconto FAILED [  4%]
+tests/functional/test_cupom_funcional.py::test_ct_f06_cliente_com_cupom_invalido_recebe_erro FAILED [  8%]
+tests/functional/test_cupom_funcional.py::test_ct_f07_cliente_sem_cupom_paga_frete_cheio PASSED [ 12%]
+tests/functional/test_frete_funcional.py::test_ct_f01_compra_pequena_paga_frete PASSED [ 16%]
+tests/functional/test_frete_funcional.py::test_ct_f02_compra_abaixo_do_limite_paga_frete PASSED [ 20%]
+tests/functional/test_frete_funcional.py::test_ct_f03_compra_no_limite_tem_frete_gratis PASSED [ 24%]
+tests/functional/test_frete_funcional.py::test_ct_f04_adicionar_item_libera_frete_gratis PASSED [ 28%]
+tests/integration/test_cupom_integracao.py::test_ct_i05_total_com_cupom_soma_taxa_com_desconto FAILED [ 32%]
+tests/integration/test_cupom_integracao.py::test_ct_i06_total_propaga_rejeicao_de_cupom FAILED [ 36%]
+tests/integration/test_frete_integracao.py::test_ct_i01_total_soma_taxa_padrao PASSED [ 40%]
+tests/integration/test_frete_integracao.py::test_ct_i02_total_sem_taxa_com_frete_gratis PASSED [ 44%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[0.0] PASSED [ 48%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[100.0] PASSED [ 52%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[249.99] PASSED [ 56%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[250.0] PASSED [ 60%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[1000.0] PASSED [ 64%]
+tests/integration/test_frete_integracao.py::test_ct_i04_total_consulta_calcular_frete PASSED [ 68%]
+tests/unit/test_cupom_unit.py::test_ct_u06_cupom_desconta_10_por_cento_da_taxa FAILED [ 72%]
+tests/unit/test_cupom_unit.py::test_ct_u07_cupom_com_frete_gratis_continua_zero FAILED [ 76%]
+tests/unit/test_cupom_unit.py::test_ct_u08_cupom_desconhecido_e_rejeitado FAILED [ 80%]
+tests/unit/test_frete_unit.py::test_ct_u01_taxa_padrao PASSED            [ 84%]
+tests/unit/test_frete_unit.py::test_ct_u02_um_centavo_abaixo_do_limite PASSED [ 88%]
+tests/unit/test_frete_unit.py::test_ct_u03_frete_gratis_no_limite PASSED [ 92%]
+tests/unit/test_frete_unit.py::test_ct_u04_frete_gratis_acima_do_limite PASSED [ 96%]
+tests/unit/test_frete_unit.py::test_ct_u05_limite_antigo_paga_frete PASSED [100%]
+
+=================================== FAILURES ===================================
+____________ test_ct_f05_cliente_com_cupom_paga_frete_com_desconto _____________
+
+    def test_ct_f05_cliente_com_cupom_paga_frete_com_desconto():
+        carrinho = 100.00
+>       valor_a_pagar = calcular_total(carrinho, cupom="DESCONTO10")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: calcular_total() got an unexpected keyword argument 'cupom'
+
+tests/functional/test_cupom_funcional.py:10: TypeError
+______________ test_ct_f06_cliente_com_cupom_invalido_recebe_erro ______________
+
+    def test_ct_f06_cliente_com_cupom_invalido_recebe_erro():
+        carrinho = 100.00
+        with pytest.raises(ValueError, match="Cupom inválido"):
+>           calcular_total(carrinho, cupom="PROMO2020")
+E           TypeError: calcular_total() got an unexpected keyword argument 'cupom'
+
+tests/functional/test_cupom_funcional.py:18: TypeError
+______________ test_ct_i05_total_com_cupom_soma_taxa_com_desconto ______________
+
+    def test_ct_i05_total_com_cupom_soma_taxa_com_desconto():
+>       assert calcular_total(100.00, cupom="DESCONTO10") == 113.50
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: calcular_total() got an unexpected keyword argument 'cupom'
+
+tests/integration/test_cupom_integracao.py:9: TypeError
+_________________ test_ct_i06_total_propaga_rejeicao_de_cupom __________________
+
+    def test_ct_i06_total_propaga_rejeicao_de_cupom():
+        with pytest.raises(ValueError, match="Cupom inválido"):
+>           calcular_total(100.00, cupom="DESCONTO50")
+E           TypeError: calcular_total() got an unexpected keyword argument 'cupom'
+
+tests/integration/test_cupom_integracao.py:15: TypeError
+_______________ test_ct_u06_cupom_desconta_10_por_cento_da_taxa ________________
+
+    def test_ct_u06_cupom_desconta_10_por_cento_da_taxa():
+>       assert calcular_frete(100.00, cupom="DESCONTO10") == 13.50
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: calcular_frete() got an unexpected keyword argument 'cupom'
+
+tests/unit/test_cupom_unit.py:9: TypeError
+_______________ test_ct_u07_cupom_com_frete_gratis_continua_zero _______________
+
+    def test_ct_u07_cupom_com_frete_gratis_continua_zero():
+>       assert calcular_frete(250.00, cupom="DESCONTO10") == 0.00
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: calcular_frete() got an unexpected keyword argument 'cupom'
+
+tests/unit/test_cupom_unit.py:14: TypeError
+__________________ test_ct_u08_cupom_desconhecido_e_rejeitado __________________
+
+    def test_ct_u08_cupom_desconhecido_e_rejeitado():
+        with pytest.raises(ValueError, match="Cupom inválido"):
+>           calcular_frete(100.00, cupom="DESCONTO50")
+E           TypeError: calcular_frete() got an unexpected keyword argument 'cupom'
+
+tests/unit/test_cupom_unit.py:20: TypeError
+=========================== short test summary info ============================
+FAILED tests/functional/test_cupom_funcional.py::test_ct_f05_cliente_com_cupom_paga_frete_com_desconto
+FAILED tests/functional/test_cupom_funcional.py::test_ct_f06_cliente_com_cupom_invalido_recebe_erro
+FAILED tests/integration/test_cupom_integracao.py::test_ct_i05_total_com_cupom_soma_taxa_com_desconto
+FAILED tests/integration/test_cupom_integracao.py::test_ct_i06_total_propaga_rejeicao_de_cupom
+FAILED tests/unit/test_cupom_unit.py::test_ct_u06_cupom_desconta_10_por_cento_da_taxa
+FAILED tests/unit/test_cupom_unit.py::test_ct_u07_cupom_com_frete_gratis_continua_zero
+FAILED tests/unit/test_cupom_unit.py::test_ct_u08_cupom_desconhecido_e_rejeitado
+========================= 7 failed, 18 passed in 0.07s =========================
+[codigo de saida: 1]
+
+================================================================================
+EXECUCAO 3 - APOS IMPLEMENTAR A FUNCIONALIDADE
+Esperado: 25 aprovados (17 de regressao + 8 novos).
+================================================================================
+$ pytest -v 
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+rootdir: /home/claude/lab6-testes-frete
+configfile: pytest.ini
+testpaths: tests
+collecting ... collected 25 items
+
+tests/functional/test_cupom_funcional.py::test_ct_f05_cliente_com_cupom_paga_frete_com_desconto PASSED [  4%]
+tests/functional/test_cupom_funcional.py::test_ct_f06_cliente_com_cupom_invalido_recebe_erro PASSED [  8%]
+tests/functional/test_cupom_funcional.py::test_ct_f07_cliente_sem_cupom_paga_frete_cheio PASSED [ 12%]
+tests/functional/test_frete_funcional.py::test_ct_f01_compra_pequena_paga_frete PASSED [ 16%]
+tests/functional/test_frete_funcional.py::test_ct_f02_compra_abaixo_do_limite_paga_frete PASSED [ 20%]
+tests/functional/test_frete_funcional.py::test_ct_f03_compra_no_limite_tem_frete_gratis PASSED [ 24%]
+tests/functional/test_frete_funcional.py::test_ct_f04_adicionar_item_libera_frete_gratis PASSED [ 28%]
+tests/integration/test_cupom_integracao.py::test_ct_i05_total_com_cupom_soma_taxa_com_desconto PASSED [ 32%]
+tests/integration/test_cupom_integracao.py::test_ct_i06_total_propaga_rejeicao_de_cupom PASSED [ 36%]
+tests/integration/test_frete_integracao.py::test_ct_i01_total_soma_taxa_padrao PASSED [ 40%]
+tests/integration/test_frete_integracao.py::test_ct_i02_total_sem_taxa_com_frete_gratis PASSED [ 44%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[0.0] PASSED [ 48%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[100.0] PASSED [ 52%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[249.99] PASSED [ 56%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[250.0] PASSED [ 60%]
+tests/integration/test_frete_integracao.py::test_ct_i03_total_consistente_com_frete[1000.0] PASSED [ 64%]
+tests/integration/test_frete_integracao.py::test_ct_i04_total_consulta_calcular_frete PASSED [ 68%]
+tests/unit/test_cupom_unit.py::test_ct_u06_cupom_desconta_10_por_cento_da_taxa PASSED [ 72%]
+tests/unit/test_cupom_unit.py::test_ct_u07_cupom_com_frete_gratis_continua_zero PASSED [ 76%]
+tests/unit/test_cupom_unit.py::test_ct_u08_cupom_desconhecido_e_rejeitado PASSED [ 80%]
+tests/unit/test_frete_unit.py::test_ct_u01_taxa_padrao PASSED            [ 84%]
+tests/unit/test_frete_unit.py::test_ct_u02_um_centavo_abaixo_do_limite PASSED [ 88%]
+tests/unit/test_frete_unit.py::test_ct_u03_frete_gratis_no_limite PASSED [ 92%]
+tests/unit/test_frete_unit.py::test_ct_u04_frete_gratis_acima_do_limite PASSED [ 96%]
+tests/unit/test_frete_unit.py::test_ct_u05_limite_antigo_paga_frete PASSED [100%]
+
+============================== 25 passed in 0.05s ==============================
+[codigo de saida: 0]

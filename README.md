@@ -20,3 +20,17 @@ pytest -v tests/unit         # só unitários
 pytest -v tests/integration  # só integração
 pytest -v tests/functional   # só funcionais
 ```
+
+## Exercício 6.5 — nova funcionalidade
+
+O enunciado pede "investimento em poupança" para o sistema bancário. Como este
+laboratório foi feito sobre o sistema de frete, a funcionalidade nova escolhida foi o
+cupom `DESCONTO10` (10% de desconto sobre a taxa de frete), especificada como
+REQ-03 e REQ-04 em `specs/checkout_frete.md` antes de qualquer código.
+
+Os 17 testes dos exercícios 6.2 a 6.4 serviram de suíte de regressão: rodaram antes
+e depois da mudança, sem edição, e passaram nas duas vezes.
+
+## Ambiente dos resultados registrados
+
+Python 3.13.16, pytest 9.1.1, Linux.
